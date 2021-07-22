@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <title>Fraud Detection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+    <style>
+    body {
+    	color: #fff;
+    	background: Black;
+    	font-family: 'Roboto', Times New Roman;
+    }
+    .form-control {
+      margin-top: 10px;
+    	height: 35px;
+    	box-shadow: none;
+    	color: #969fa4;
+      font-family: times and new Roman;
+    }
+    .form-control:focus {
+    	border-color: #5cb85c;
+    }
+    .form-control, .btn {
+    	border-radius: 15px;
+    }
+    .signup-form {
+    	width: 500px;
+    	margin: 0 auto;
+    	padding: 30px 0;
+      font-size: 15px;
+
+    }
+    .signup-form h2 {
+    	color: #636363;
+    	margin: 0 0 15px;
+    	position: relative;
+    	text-align: center;
+    }
+    .signup-form h2:before, .signup-form h2:after {
+    	content: "";
+    	height: 2px;
+    	width: 30%;
+    	background: #d4d4d4;
+    	position: absolute;
+    	top: 50%;
+    	z-index: 2;
+    }
+    .signup-form h2:before {
+    	left: 0;
+    }
+    .signup-form h2:after {
+    	right: 0;
+    }
+    .signup-form .hint-text {
+    	color: #999;
+    	margin-bottom: 30px;
+    	text-align: center;
+    }
+    .signup-form form {
+    	color: #999;
+    	border-radius: 30px;
+    	margin-bottom: 15px;
+      margin-top: 10px;
+    	background: #f2f3f7;
+    	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    	padding: 30px;
+    }
+    .signup-form .form-group {
+    	margin-bottom: 20px;
+    }
+    .signup-form input[type="checkbox"] {
+    	margin-top: 15px;
+    }
+    .signup-form .btn {
+    	font-size: 16px;
+    	font-weight: bold;
+    	min-width: 140px;
+    	outline: none !important;
+    }
+    .signup-form .row div:first-child {
+    	padding-right: 10px;
+    }
+    .signup-form .row div:last-child {
+    	padding-left: 10px;
+    }
+    .signup-form a {
+    	color: #fff;
+    	text-decoration: underline;
+    }
+    .signup-form a:hover {
+    	text-decoration: none;
+    }
+    .signup-form form a {
+    	color: #5cb85c;
+    	text-decoration: none;
+    }
+    .signup-form form a:hover {
+    	text-decoration: underline;
+    }
+
+    </style>
+
+</head>
+<body>
+<center>
+<div class="signup-form">
+<h1 style="font-family:Times and New Roman"><marquee>Fraud Detection</marquee></h1>
+
+
+<form action="{% url 'result' %}" method="post">
+
+  <div class="form-group">
+        <div class="row">
+            <div class="col"><input type="number" min="250" max="50000" class="form-control" name="creditLimit" placeholder="creditLimit" required="required"></div>
+        </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+          <input type="number" min="0" max="50000" class="form-control" name="transactionAmount" placeholder="transactionAmount" required="required">
+          </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+          <input type="number" min="1" max="90" class="form-control" name="posEntryMode" placeholder="posEntryMode" required="required">
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+          <input type="number" min="1" max="100" class="form-control" name="posConditionCode" placeholder="posConditionCode" required="required">
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+            <select name="merchantCategoryCode" type="text" class="form-control"  placeholder="merchantCategoryCode" required="required">
+                <option value="">Select merchantCategoryCode:</option>
+                <option value="online_retail">online_retail</option>
+                <option value="fastfood">fastfood</option>
+                <option value="entertainment">entertainment</option>
+                <option value="food">food</option>
+                <option value="online_gifts">online_gifts</option>
+                <option value="rideshare">rideshare</option>
+                <option value="hotels">hotels</option>
+                <option value="fuel">fuel</option>
+                <option value="subscriptions">subscriptions</option>
+                <option value="auto">auto</option>
+                <option value="health">health</option>
+                <option value="personal care">personal care</option>
+                <option value="airline">airline</option>
+                <option value="mobileapps">mobileapps</option>
+                <option value="online_subscriptions">online_subscriptions</option>
+                <option value="furniture">furniture</option>
+                <option value="food_delivery">food_delivery</option>
+                <option value="gym">gym</option>
+                <option value="cable/phone">cable/phone</option>
+            </select><br>
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+            <select name="transactionType" type="text" class="form-control" placeholder="transactionType" required="required">
+                <option value="">Select transactionType:</option>
+                <option value="PURCHASE">PURCHASE</option>
+                <option value="REVERSAL">REVERSAL</option>
+                <option value="ADDRESS_VERIFICATION">ADDRESS_VERIFICATION</option>
+            </select><br>
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+          <input type="number" min="0" max="50000" class="form-control" name="currentBalance" placeholder="currentBalance" required="required">
+          </div>
+
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+            <select name="cardPresent" type="number" class="form-control" placeholder="cardPresent" required="required">
+                <option value="">Select cardPresent:</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select><br>
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+            <select name="expirationDateKeyInMatch" type="number" class="form-control" placeholder="expirationDateKeyInMatch" required="required">
+                <option value="">Select expirationDateKeyInMatch:</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select><br>
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+            <select name="rightCVV" type="number" class="form-control" placeholder="rightCVV" required="required">
+                <option value="">Select rightCVV:</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select><br>
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+            <select name="sameCountry" type="number" class="form-control" placeholder="sameCountry" required="required">
+                <option value="">Select sameCountry:</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select><br>
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+            <select name="firPurchase" type="number" class="form-control" placeholder="firPurchase" required="required">
+                <option value="">Select firPurchase:</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select><br>
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+          <input type="number" min="1" max="7000" class="form-control" name="expTime" placeholder="expTime" required="required">
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+          <input type="number" min="1" max="10000" class="form-control" name="openTime" placeholder="openTime" required="required">
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+          <input type="number" min="0" max="10000" class="form-control" name="changeAddTime" placeholder="changeAddTime" required="required">
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+            <select name="reversed" type="number" class="form-control" placeholder="reversed" required="required">
+                <option value="">Select reversed:</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select><br>
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="row">
+          <div class="col">
+            <select name="multi" type="number" class="form-control" placeholder="multi" required="required">
+                <option value="">Select multi:</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select><br>
+          </div>
+      </div>
+  </div>
+
+
+<div class="form-group">
+    <div class="row">
+        <div class="col">
+          {% csrf_token %}
+
+        <button type="submit" class="form-control" placeholder="Country"required="required" >Prediction</button>
+        </div>
+    </div>
+<div>
+
+</center>
+
+</form>
+</body>
+</html>
